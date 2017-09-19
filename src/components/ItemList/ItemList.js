@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+
 import { baqend } from '../../baqend'
 
-import ItemListComponent './ItemListComponent'
+import ItemListComponent from './ItemListComponent'
 
 class ItemList extends Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class ItemList extends Component {
 
   componentWillMount() {
     const { db } = this.props
-    this.subscription = db.Item.find().resultStream().subscribe((items) => {
+    this.subscription = db.Item.find().notEqual('type', 'comment').resultStream().subscribe(async (items) => {
       this.setState({ items })
     })
   }

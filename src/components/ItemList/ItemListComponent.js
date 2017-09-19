@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import ItemListEntry from '../ItemListEntry/ItemListEntry'
 
 class ItemListComponent extends Component {
 
@@ -8,9 +9,7 @@ class ItemListComponent extends Component {
       <div>
         Items
         {this.props.items.map(item => (
-          <div key={item.key}>
-            {item.text}
-          </div>
+          <ItemListEntry key={item.key} item={item} />
         ))}
       </div>
     );
@@ -18,4 +17,4 @@ class ItemListComponent extends Component {
 
 }
 
-export default baqend(ItemListComponent);
+export default ItemListComponent;
