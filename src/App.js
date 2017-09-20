@@ -11,9 +11,9 @@ import {
   Link
 } from 'react-router-dom'
 
-import CreateItemScreen from './screens/CreateItemScreen'
-import ItemListScreen from './screens/ItemListScreen'
-import ItemScreen from './screens/ItemScreen'
+import QuestionCreateScreen from './screens/QuestionCreateScreen'
+import QuestionListScreen from './screens/QuestionListScreen'
+import QuestionDetailsScreen from './screens/QuestionDetailsScreen'
 
 class App extends Component {
 
@@ -31,9 +31,9 @@ class App extends Component {
               <Link to="/">List</Link>
             </div>
 
-            <Route exact path="/" component={ItemListScreen}/>
-            <Route exact path="/create" component={CreateItemScreen}/>
-            <Route path="/item/:id" component={ItemScreen}/>
+            <Route exact path="/" component={QuestionListScreen}/>
+            <Route exact path="/create" component={QuestionCreateScreen}/>
+            <Route path="/item/:id" component={QuestionDetailsScreen}/>
 
           </div>
         </Router>
