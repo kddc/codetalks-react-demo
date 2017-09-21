@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import '../../styles/Question.css'
 
 class QuestionComponent extends Component {
 
@@ -10,24 +11,20 @@ class QuestionComponent extends Component {
   render() {
     const { question } = this.props
     return (
-      <Link to={"/item/" + question.key}>
+      <div className="question">
 
-        <div>
-          <div onClick={this.handleUpvote}>
-            {question.upvotes}
+        <div className="upvotes" onClick={this.handleUpvote}>
+          {question.upvotes}
+        </div>
+
+        <div className="content">
+          <Link to={"/item/" + question.key}>{question.text}</Link>
+          <div className="info">
+            {question.author} | {question.answers && question.answers.length} answers
           </div>
         </div>
 
-        <div>
-          {question.text}
-          <div>
-            <span>{question.author}</span>
-            <span> | </span>
-            <span>{question.answers && question.answers.length} answers</span>
-          </div>
-        </div>
-
-      </Link>
+      </div>
     );
   }
 

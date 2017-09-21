@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import '../../styles/Form.css'
 
 class FormComponent extends Component {
   constructor(props) {
@@ -22,14 +23,16 @@ class FormComponent extends Component {
 
   render() {
     return (
-      <div>
+      <div className="form">
         <textarea
+          className="input"
           placeholder='Your Text'
           name='text'
           onChange={this.handleChange}
           value={this.state.text} />
-        <div>
+        <div className="row">
           <input
+            className="input"
             placeholder='Name'
             name='author'
             onChange={this.handleChange}

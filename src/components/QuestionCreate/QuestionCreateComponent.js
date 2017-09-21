@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 import Form from '../Form/Form'
 
 class QuestionCreateComponent extends Component {
 
   onSubmit = (data) => {
-    this.props.onSubmit(data)
+    const { history } = this.props
+    this.props.onSubmit(data).then(() => history.push('/'))
   }
 
   render() {
     return (
-      <div>
+      <div style={{padding: '16px 16px 0 16px', backgroundColor: 'white'}}>
         <Form onSubmit={this.onSubmit} />
       </div>
     )
@@ -17,4 +19,4 @@ class QuestionCreateComponent extends Component {
 
 }
 
-export default QuestionCreateComponent
+export default withRouter(QuestionCreateComponent)

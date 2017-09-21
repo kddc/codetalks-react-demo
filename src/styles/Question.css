@@ -1,0 +1,27 @@
+.question {
+  padding: 16px;
+  background: white;
+  display: flex;
+  align-items: center;
+}
+
+.question:not(:last-child) {
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.question .upvotes {
+  color: #27c087;
+  font-size: 20px;
+  width: 40px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+}
+
+.question .content {
+  padding-left: 16px;
+}
+
+.question .content .info {
+  margin-top: 8px;
+}

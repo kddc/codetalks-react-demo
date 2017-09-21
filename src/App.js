@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from './codetalks.png';
 import './styles/App.css';
 
 import { db } from 'baqend/realtime'
@@ -21,20 +21,10 @@ class App extends Component {
     return (
       <BaqendProvider db={db.connect('codetalks17', true)}>
         <Router>
-          <div className="App">
-            <div className="App-header">
-              <img src={logo} className="App-logo" alt="logo" />
-              <h2>Welcome to React</h2>
-            </div>
-            <div style={{display: 'flex', justifyContent: 'space-around'}}>
-              <Link to="/create">Ask</Link>
-              <Link to="/">List</Link>
-            </div>
-
+          <div className="app">
             <Route exact path="/" component={QuestionListScreen}/>
             <Route exact path="/create" component={QuestionCreateScreen}/>
             <Route path="/item/:id" component={QuestionDetailsScreen}/>
-
           </div>
         </Router>
       </BaqendProvider>
