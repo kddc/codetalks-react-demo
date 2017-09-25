@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 
-// import Question from '../Question/Question'
+import Question from '../Question/Question'
 
 class QuestionListComponent extends Component {
 
   render() {
     return (
       <div>
-        List
+        {this.props.questions.map((question) => (
+          <Question key={question.key} question={question} />
+        ))}
       </div>
     );
   }

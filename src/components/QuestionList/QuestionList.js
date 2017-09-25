@@ -11,6 +11,17 @@ class QuestionList extends Component {
     }
   }
 
+  componentDidMount() {
+    const { db } = this.props
+    db.Question
+      .find()
+      .descending('upvotes')
+      .resultList()
+      .then((questions) => {
+        this.setState({ questions })
+      })
+  }
+
   render() {
     return (
       <QuestionListComponent questions={this.state.questions} />
