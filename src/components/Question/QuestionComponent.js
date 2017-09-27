@@ -18,7 +18,7 @@ class QuestionComponent extends Component {
         </div>
 
         <div className="content">
-          {question.text}
+          <Link to={`/question/${question.key}`}>{question.text}</Link>
           <div className="info">
             {question.author} | {question.answers} answers
           </div>
