@@ -1,21 +1,26 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import './styles/App.css'
+
+import { db } from 'baqend/realtime'
+import { BaqendProvider } from 'react-baqend-provider'
+
+import AppLayout from './layouts/AppLayout';
+import QuestionList from './components/QuestionList/QuestionList'
 
 class App extends Component {
+
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+      <BaqendProvider db={db.connect('codetalks17', true)}>
+        <div className="app">
+          <AppLayout>
+            <QuestionList />
+          </AppLayout>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      </BaqendProvider>
     );
   }
+
 }
 
 export default App;
