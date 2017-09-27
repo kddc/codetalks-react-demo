@@ -29,10 +29,29 @@ class QuestionDetails extends Component {
   componentDidMount() {
     const { db } = this.props
     const { params } = this.props.match
-
+    this.questionSubscription = db.Question
+      .find()
+      .equal('id', `/db/Question/${params.id}`)
+      .eventStream()
+      .subscribe((event) => {
+        this.setState({
+          question: event.data
+        })
+      })
+    this.answerSubscription = db.Answer
+      .find()
+      .equal('question', `/db/Question/${params.id}`)
+      .resultStream()
+      .subscribe((answers) => {
+        this.setState({
+          answers
+        })
+      })
   }
 
   componentWillUnmount() {
+    this.questionSubscription && this.questionSubscription.unsubscribe()
+    this.answerSubscription && this.answerSubscription.unsubscribe()
   }
 
   render() {

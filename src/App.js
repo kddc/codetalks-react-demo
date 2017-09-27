@@ -20,6 +20,7 @@ class App extends Component {
             <AppLayout>
               <Route exact path="/" component={QuestionList} />
               <Route path="/ask" component={QuestionCreate} />
+              <Route path="/question/:id" component={QuestionDetails} />
             </AppLayout>
           </div>
         </BrowserRouter>
