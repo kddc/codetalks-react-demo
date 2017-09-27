@@ -4,7 +4,11 @@ import Form from '../Form/Form'
 
 class QuestionCreateComponent extends Component {
 
-  onSubmit = () => {
+  onSubmit = (data) => {
+    const { history } = this.props
+    this.props.onSubmit(data).then(() => {
+      history.push('/')
+    })
   }
 
   render() {
@@ -17,4 +21,4 @@ class QuestionCreateComponent extends Component {
 
 }
 
-export default QuestionCreateComponent
+export default withRouter(QuestionCreateComponent)
