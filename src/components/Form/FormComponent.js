@@ -5,9 +5,16 @@ class FormComponent extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      name: '',
-      author: ''
+      author: '',
+      text: ''
     }
+  }
+
+  handleChange = (event) => {
+    const { name, value } = event.target
+    this.setState({
+      [name]: value
+    })
   }
 
   handleSubmit = (event) => {
@@ -15,34 +22,28 @@ class FormComponent extends Component {
     this.props.onSubmit(this.state)
   }
 
-  handleChange = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value
-    })
-  }
-
   render() {
     return (
-      <div className="form">
+      <form className="form" onSubmit={this.handleSubmit}>
         <textarea
           className="input"
-          placeholder='Your Text'
-          name='text'
-          onChange={this.handleChange}
-          value={this.state.text} />
+          placeholder="Your text"
+          name="text"
+          value={this.state.text}
+          onChange={this.handleChange} />
         <div className="row">
           <input
             className="input"
-            placeholder='Name'
-            name='author'
-            onChange={this.handleChange}
-            value={this.state.author} />
-          <button onClick={this.handleSubmit}>Submit</button>
+            placeholder="Name"
+            name="author"
+            value={this.state.author}
+            onChange={this.handleChange} />
+          <button type="submit">Submit</button>
         </div>
-      </div>
+      </form>
     );
   }
 
 }
 
-export default FormComponent;
+export default FormComponent

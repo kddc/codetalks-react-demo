@@ -5,6 +5,10 @@ import Question from '../Question/Question'
 
 class QuestionDetailsComponent extends Component {
 
+  onSubmitAnswer = (data) => {
+    this.props.onSubmitAnswer(data)
+  }
+
   handleUpvoteAnswer = (answer) => {
     this.props.onUpvoteAnswer(answer)
   }
@@ -17,7 +21,6 @@ class QuestionDetailsComponent extends Component {
         <div className="answers">
           <Form onSubmit={this.props.onSubmitAnswer} />
           <div>
-            {question.answers && question.answers.length} Answers
             {answers.map((answer) => (
               <div className="answer" key={answer.key}>
                 <div className="upvotes" onClick={() => this.handleUpvoteAnswer(answer)}>

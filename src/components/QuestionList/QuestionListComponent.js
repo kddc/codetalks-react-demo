@@ -5,13 +5,14 @@ import Question from '../Question/Question'
 class QuestionListComponent extends Component {
 
   render() {
+    const { questions } = this.props
     return (
       <div>
-        {this.props.questions.map(question => (
+        {questions.map((question) => (
           <Question key={question.key} question={question} />
         ))}
       </div>
-    );
+    )
   }
 
 }

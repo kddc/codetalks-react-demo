@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { baqend } from '../../baqend'
+import React, { Component } from 'react'
+import { baqend } from 'react-baqend-provider'
 
 import QuestionDetailsComponent from './QuestionDetailsComponent'
 
@@ -12,46 +12,46 @@ class QuestionDetails extends Component {
     }
   }
 
-  onUpvoteAnswer = (answer) => {
-    answer.upvotes++
-    answer.save()
-  }
-
   onSubmitAnswer = (data) => {
     const { db } = this.props
     const { question } = this.state
     const answer = new db.Answer({
-      ...data,
-      question
+      question,
+      ...data
     })
-    question.answers.push(answer)
-    question.save({ depth: 1 })
+    answer.save()
+  }
+
+  onUpvoteAnswer = (answer) => {
+    answer.partialUpdate().increment('upvotes').execute()
   }
 
   componentDidMount() {
     const { db } = this.props
-
+    const { params } = this.props.match
     this.questionSubscription = db.Question
       .find()
-        .equal('id', '/db/Question/' + this.props.id)
+      .equal('id', `/db/Question/${params.id}`)
       .eventStream()
-        .subscribe((event) => {
-          const question = event.data
-          this.setState({ question })
+      .subscribe((event) => {
+        this.setState({
+          question: event.data
         })
-
-    this.answersSubscription = db.Answer
+      })
+    this.answerSubscription = db.Answer
       .find()
-        .equal('question', '/db/Question/' + this.props.id)
+      .equal('question', `/db/Question/${params.id}`)
       .resultStream()
-        .subscribe((answers) => {
-          this.setState({ answers })
+      .subscribe((answers) => {
+        this.setState({
+          answers
         })
+      })
   }
 
   componentWillUnmount() {
-    this.questionSubscription.unsubscribe()
-    this.answersSubscription.unsubscribe()
+    this.questionSubscription && this.questionSubscription.unsubscribe()
+    this.answerSubscription && this.answerSubscription.unsubscribe()
   }
 
   render() {

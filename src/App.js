@@ -1,19 +1,14 @@
-import React, { Component } from 'react';
-import logo from './codetalks.png';
-import './styles/App.css';
+import React, { Component } from 'react'
+import './styles/App.css'
 
 import { db } from 'baqend/realtime'
-import { BaqendProvider } from './baqend'
+import { BaqendProvider } from 'react-baqend-provider'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom'
-
-import QuestionCreateScreen from './screens/QuestionCreateScreen'
-import QuestionListScreen from './screens/QuestionListScreen'
-import QuestionDetailsScreen from './screens/QuestionDetailsScreen'
+import AppLayout from './layouts/AppLayout';
+import QuestionList from './components/QuestionList/QuestionList'
+import QuestionCreate from './components/QuestionCreate/QuestionCreate'
+import QuestionDetails from './components/QuestionDetails/QuestionDetails'
 
 class App extends Component {
 
@@ -22,9 +17,11 @@ class App extends Component {
       <BaqendProvider db={db.connect('codetalks17', true)}>
         <Router>
           <div className="app">
-            <Route exact path="/" component={QuestionListScreen}/>
-            <Route exact path="/create" component={QuestionCreateScreen}/>
-            <Route path="/item/:id" component={QuestionDetailsScreen}/>
+            <AppLayout>
+              <Route exact path="/" component={QuestionList} />
+              <Route path="/ask" component={QuestionCreate} />
+              <Route path="/question/:id" component={QuestionDetails} />
+            </AppLayout>
           </div>
         </Router>
       </BaqendProvider>

@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { baqend } from '../../baqend'
+import React, { Component } from 'react'
+import { baqend } from 'react-baqend-provider'
 
 import QuestionComponent from './QuestionComponent'
 
@@ -7,8 +7,7 @@ class Question extends Component {
 
   onUpvote = () => {
     const { question } = this.props
-    question.upvotes++
-    question.save()
+    question.partialUpdate().increment('upvotes').execute()
   }
 
   render() {
@@ -20,4 +19,4 @@ class Question extends Component {
 
 }
 
-export default baqend(Question);
+export default Question;

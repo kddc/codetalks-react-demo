@@ -6,12 +6,14 @@ class QuestionCreateComponent extends Component {
 
   onSubmit = (data) => {
     const { history } = this.props
-    this.props.onSubmit(data).then(() => history.push('/'))
+    this.props.onSubmit(data).then(() => {
+      history.push('/')
+    })
   }
 
   render() {
     return (
-      <div style={{padding: '16px 16px 0 16px', backgroundColor: 'white'}}>
+      <div className="question-create">
         <Form onSubmit={this.onSubmit} />
       </div>
     )

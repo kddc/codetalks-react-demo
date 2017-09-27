@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { baqend } from '../../baqend'
+import { baqend } from 'react-baqend-provider'
 
 import QuestionCreateComponent from './QuestionCreateComponent'
 

@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
-import logo from '../codetalks.png';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom'
+import logo from '../codetalks.png'
+import { Link } from 'react-router-dom'
 
 class AppLayout extends Component {
 
@@ -15,7 +11,7 @@ class AppLayout extends Component {
           <div className="container app-nav">
             <img src={logo} className="app-logo" alt="logo" />
             <Link to="/">Top</Link>
-            <Link to="/create">Ask</Link>
+            <Link to="/ask">Ask</Link>
           </div>
         </div>
         <div className="container">
