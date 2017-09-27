@@ -5,7 +5,12 @@ import QuestionCreateComponent from './QuestionCreateComponent'
 
 class QuestionCreate extends Component {
 
-  onSubmit = () => {
+  onSubmit = (data) => {
+    const { db } = this.props
+    const question = new db.Question({
+      ...data
+    })
+    return question.save()
   }
 
   render() {
@@ -16,4 +21,4 @@ class QuestionCreate extends Component {
 
 }
 
-export default QuestionCreate
+export default baqend(QuestionCreate)

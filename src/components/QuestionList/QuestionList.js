@@ -13,13 +13,17 @@ class QuestionList extends Component {
 
   componentDidMount() {
     const { db } = this.props
-    db.Question
+    this.subscription = db.Question
       .find()
       .descending('upvotes')
-      .resultList()
-      .then((questions) => {
+      .resultStream()
+      .subscribe((questions) => {
         this.setState({ questions })
       })
+  }
+
+  componentWillUnmount() {
+    this.subscription && this.subscription.unsubscribe()
   }
 
   render() {

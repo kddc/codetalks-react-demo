@@ -5,25 +5,15 @@ import QuestionComponent from './QuestionComponent'
 
 class Question extends Component {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      question: props.question
-    }
-  }
-
   onUpvote = () => {
-    const { question } = this.state
-    question.optimisticSave((question) => {
-      question.upvotes++
-    }).then((question) => {
-      this.setState({ question })
-    })
+    const { question } = this.props
+    question.partialUpdate().increment('upvotes').execute()
   }
 
   render() {
+    const { question } = this.props
     return (
-      <QuestionComponent question={this.state.question} onUpvote={this.onUpvote} />
+      <QuestionComponent question={question} onUpvote={this.onUpvote} />
     )
   }
 

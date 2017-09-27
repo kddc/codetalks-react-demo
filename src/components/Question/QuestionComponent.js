@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import '../../styles/Question.css'
 
 class QuestionComponent extends Component {
@@ -19,7 +20,7 @@ class QuestionComponent extends Component {
         <div className="content">
           {question.text}
           <div className="info">
-            {question.author} | {question.answers && question.answers.length} answers
+            {question.author} | {question.answers} answers
           </div>
         </div>
 
