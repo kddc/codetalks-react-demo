@@ -6,7 +6,8 @@ import QuestionComponent from './QuestionComponent'
 class Question extends Component {
 
   onUpvote = () => {
-
+    const { question } = this.props
+    question.partialUpdate().increment('upvotes').execute()
   }
 
   render() {

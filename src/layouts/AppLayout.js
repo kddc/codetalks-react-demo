@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import logo from '../codetalks.png';
+import logo from '../codetalks.png'
+import { Link } from 'react-router-dom'
 
 class AppLayout extends Component {
 

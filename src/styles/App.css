@@ -30,3 +30,8 @@ body {
 .app-content {
   padding: 16px;
 }
+
+.question-create {
+  padding: 16px 16px 0 16px;
+  background-color: white;
+}
